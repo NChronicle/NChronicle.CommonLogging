@@ -1,0 +1,10 @@
+.vs/
+.idea/
+packages/
+TestResults/
+*.DotSettings.user
+*.csproj.user
+*.nupkg
+*.log
+**/bin/
+**/obj/

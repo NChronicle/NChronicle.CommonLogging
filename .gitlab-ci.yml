@@ -1,0 +1,26 @@
+stages:
+  - Build
+  - Test
+  - Package
+
+Build:
+  stage: Build
+  script: "nuget restore & dotnet build /p:Configuration=Release"
+  artifacts:
+    paths:
+    - NRegistry/bin/Release/
+
+Test:
+  stage: Test
+  script: "nuget restore & dotnet test NRegistry.Tests\ /p:Configuration=Release"
+  dependencies:
+  - Build
+
+Package:
+  stage: Package
+  script: "nuget pack NRegistry.nuspec"
+  dependencies:
+  - Build
+  artifacts:
+    paths:
+    - NRegistry.*.nupkg
